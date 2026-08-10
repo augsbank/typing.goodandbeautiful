@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Closing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        #countdown {
+            font-weight: bold;
+            color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Action Complete!</h1>
+    <p>This tab will close automatically in <span id="countdown">5</span> seconds...</p>
+
+    <script>
+        // 1. Set up the specific point or trigger (a 5-second countdown timer)
+        let timeLeft = 5;
+        const countdownElement = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                triggerClose(); // 2. Execute the close logic when the point is reached
+            }
+        }, 1000);
+
+        // 3. The function that bypasses browser restrictions
+        function triggerClose() {
+            // Overwrite the current window context to trick the browser
+            window.open("", "_self");
+            
+            // Execute the termination command
+            window.close();
+
+            // Fallback: If a strict browser blocks it, redirect them to safety
+            setTimeout(() => {
+                window.location.href = "https://google.com";
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
