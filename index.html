@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good and Beautiful Typing</title>
-    <link rel="icon" href="https://typing.goodandbeautiful.com/icons/Icon-192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="https://typing.goodandbeautiful.com/Icon_16.png" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="https://typing.goodandbeautiful.com/icons/Icon-192.png">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #202124; color: #f1f3f4; overflow: hidden; }
@@ -42,6 +43,16 @@
         .min-btn:hover { background: rgba(255,255,255,0.1); }
         .workspace-view { flex: 1; position: relative; background: #202124; }
         .home-view { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; padding: 20px; }
+        
+        /* New Header Styling */
+        .home-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
+        .brand-logo { font-size: 52px; font-weight: 500; letter-spacing: -1px; margin-bottom: 4px; user-select: none; }
+        .brand-blue { color: #4285f4; }
+        .brand-red { color: #ea4335; }
+        .brand-yellow { color: #fbbc05; }
+        .brand-green { color: #34a853; }
+        .online-subtext { font-size: 18px; font-weight: 200; color: #ffffff; opacity: 0.8; letter-spacing: 2px; }
+
         .search-box-wrapper { width: 100%; max-width: 560px; position: relative; display: flex; align-items: center; margin-bottom: 35px; }
         .main-search-input { width: 100%; padding: 14px 50px 14px 24px; border-radius: 24px; border: 1px solid #5f6368; background: #202124; color: #e8eaed; font-size: 16px; outline: none; text-align: center; }
         .main-search-input:focus, .main-search-input:hover { background: #303134; border-color: transparent; box-shadow: 0 1px 6px rgba(0,0,0,0.5); }
@@ -183,7 +194,19 @@
             if (currentTab.isHome) {
                 const homeDiv = document.createElement('div');
                 homeDiv.className = 'home-view';
-                homeDiv.innerHTML = `<div class="search-box-wrapper"><input type="text" id="mainSearch" class="main-search-input" onkeypress="checkHomeSearchEnter(event)"></div><div class="shortcuts-grid" id="shortcutsGrid"></div>`;
+                homeDiv.innerHTML = `
+                    <div class="home-header">
+                        <div class="brand-logo">
+                            <span class="brand-blue">G</span><span class="brand-red">o</span><span class="brand-yellow">o</span><span class="brand-blue">g</span><span class="brand-green">l</span><span class="brand-red">e</span>
+                            <span class="brand-blue">C</span><span class="brand-red">h</span><span class="brand-yellow">r</span><span class="brand-blue">o</span><span class="brand-green">m</span><span class="brand-red">e</span>
+                        </div>
+                        <div class="online-subtext">Online</div>
+                    </div>
+                    <div class="search-box-wrapper">
+                        <input type="text" id="mainSearch" class="main-search-input" onkeypress="checkHomeSearchEnter(event)">
+                    </div>
+                    <div class="shortcuts-grid" id="shortcutsGrid"></div>
+                `;
                 viewContainer.appendChild(homeDiv);
                 renderStoredShortcuts();
             } else {
